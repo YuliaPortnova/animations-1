@@ -16,6 +16,7 @@ button {
 
 body {
   max-width: 1440px;
+  min-width: 1220px;
   margin: 0 auto;
   overflow-x: hidden;
   font-family: 'Manrope', Arial, sans-serif;
@@ -499,6 +500,7 @@ body {
   border: none;
   position: relative;
   cursor: pointer;
+  transition: color 0.3s ease;
 }
 
 .tabs__link:hover {
@@ -514,14 +516,22 @@ body {
   height: 1px;
   background-color: #43b031;
   transform-origin: left top;
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+}
+
+.tabs__link:hover::after {
+  transform: scaleX(1);
 }
 
 .tabs__link--active {
   color: #2c2c2c;
+  pointer-events: none;
 }
 
 .tabs__link--active::after {
   background-color: #2c2c2c;
+  transform: scaleX(1);
 }
 
 .tabs__content {
@@ -541,15 +551,18 @@ body {
   grid-row: 1 / 2;
   pointer-events: none;
   z-index: 10;
+  opacity: 0;
+  transition: opacity 0s ease;
   gap: 20px;
   justify-content: space-between;
-  display: none;
+  display: flex;
 }
 
 .tab-content__item--active {
   z-index: 20;
+  opacity: 1;
+  transition: opacity 0.75s ease;
   pointer-events: auto;
-  display: flex;
 }
 
 .tab-content__wrap {
@@ -557,11 +570,21 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  transform: translateX(-100px);
+  transition: transform 0s ease;
 }
 
 .tab-content__img {
   max-width: 100%;
   display: block;
+  transform: translateX(100px);
+  transition: transform 0s ease;
+}
+
+.tab-content__item--active .tab-content__wrap,
+.tab-content__item--active .tab-content__img {
+  transform: translateX(0);
+  transition: transform 0.5s ease 0.1s;
 }
 
 .tab-content__date {
@@ -599,6 +622,7 @@ body {
   color: #FFFFFF;
   background-color: #2c2c2c;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .tab-content__link:hover {
